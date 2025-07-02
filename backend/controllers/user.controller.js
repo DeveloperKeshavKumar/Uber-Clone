@@ -1,4 +1,4 @@
-import User from "../models/User.model.js";
+import User from "../models/user.model.js";
 import { validationResult } from "express-validator";
 import { createUser } from "../services/user.service.js";
 import BlacklistToken from "../models/blacklistToken.model.js";
