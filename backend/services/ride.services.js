@@ -38,13 +38,13 @@ export const getOtpService = (num) => {
 }
 
 export const createRideService = async ({ user, pickup, destination, vehicleType }) => {
-    const fare = await getFare(pickup, destination);
+    const fare = await getFareService(pickup, destination);
 
     const ride = Ride.create({
         user,
         pickup,
         destination,
-        otp: getOtp(6),
+        otp: getOtpService(6),
         fare: fare[vehicleType]
     })
 

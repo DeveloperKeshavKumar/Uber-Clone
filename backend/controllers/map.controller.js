@@ -1,5 +1,5 @@
 import { validationResult } from "express-validator"
-import { getAddressCoordinates, getAddressDistanceAndTime } from "../services/map.service.js"
+import { getAddressCoordinates, getAddressDistanceAndTime, getAutoCompleteSuggestions } from "../services/map.service.js"
 
 export const getCoordinates = async (req, res) => {
     try {
@@ -41,7 +41,7 @@ export const getSuggestions = async (req, res) => {
         const suggestions = await getAutoCompleteSuggestions(req.query.input)
         res.status(200).json(suggestions)
     } catch (error) {
-        console.error("Error retrieving Distance and Time:", error.message)
+        console.error("Error retrieving Suggestions:", error.message)
         return res.status(error.statusCode || 500).json({ message: error.message || "Internal server error" })
     }
 }

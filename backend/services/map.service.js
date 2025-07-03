@@ -40,16 +40,17 @@ export const getAddressDistanceAndTime = async (origin, destination) => {
 }
 
 export const getAutoCompleteSuggestions = async (query) => {
-    const url = `https://maps.googleapis/com/api/place/autocomplete/json?input=${encodeURIComponent(query)}&key=${API_KEY}`
+    const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${encodeURIComponent(query)}&key=${API_KEY}`
     try {
         const response = await axios.get(url)
         if (response.data.status === 'OK') {
             return response.data.predictions
         } else {
-            throw new Error('Unable to fecth Suggestions')
+            throw new Error(response.data.error_message || 'Unable to fecth Suggestions')
         }
 
     } catch (error) {
+        console.log(error)
         throw error
     }
 }

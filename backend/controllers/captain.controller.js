@@ -11,7 +11,7 @@ export const registerCaptain = async (req, res) => {
         }
 
         const { fullName, email, password, vehicle } = req.body;
-        const { Captain, token } = await createCaptain({
+        const { captain, token } = await createCaptain({
             fullName,
             email,
             password, vehicle
@@ -27,7 +27,7 @@ export const registerCaptain = async (req, res) => {
         res.status(201).json({
             message: "Captain registered successfully",
             token,
-            Captain
+            captain
         });
 
     } catch (error) {
@@ -70,7 +70,7 @@ export const loginCaptain = async (req, res) => {
         res.status(200).json({
             message: "Captain logged in successfully",
             token,
-            Captain: captainObj
+            captain: captainObj
         });
 
     } catch (error) {
