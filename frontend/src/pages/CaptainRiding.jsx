@@ -1,17 +1,14 @@
 import React, { useRef, useState } from 'react'
 import { BiExit } from 'react-icons/bi'
-import { Link, useLocation } from 'react-router'
+import { Link } from 'react-router'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import FinishRide from '../components/FinishRide'
-import LiveTracking from '../components/LiveTracking'
 
 const CaptainRiding = () => {
     const [finishRidePanelOpen, setFinishRidePanelOpen] = useState(false)
     const finishRidePanelRef = useRef(null)
 
-    const location = useLocation()
-    const ride = location.state?.ride
 
     useGSAP(() => {
         if (finishRidePanelOpen) {
@@ -55,10 +52,7 @@ const CaptainRiding = () => {
                 </button>
             </div>
             <div ref={finishRidePanelRef} className='fixed bottom-0 translate-y-full z-10 bg-white w-full h-screen px-3 py-6 pt-10'>
-                <FinishRide ride={ride} setFinishRidePanelOpen={setFinishRidePanelOpen} />
-            </div>
-            <div className='h-screen fixed w-screen top-0 z-[-1]'>
-                <LiveTracking />
+                <FinishRide setFinishRidePanelOpen={setFinishRidePanelOpen} />
             </div>
         </div>
     )

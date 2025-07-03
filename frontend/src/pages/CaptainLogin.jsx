@@ -13,7 +13,7 @@ const CaptainLogin = () => {
 
   const { setCaptain } = useContext(CaptainDataContext)
 
-  const SERVER_URL = import.meta.env.VITE_ENV === 'development' ? import.meta.env.VITE_SERVER_URL_DEV : import.meta.env.VITE_SERVER_URL
+  const SERVER_URL = import.meta.env.VITE_ENV === 'developement' ? import.meta.env.VITE_SERVER_URL_DEV : import.meta.env.VITE_SERVER_URL
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -24,7 +24,7 @@ const CaptainLogin = () => {
 
     if (response.status === 200) {
       localStorage.setItem('token', response.data.token)
-      setCaptain(response.data.captain)
+      setCaptain(response.data.user)
       navigate('/captain/home')
     }
 

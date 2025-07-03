@@ -17,14 +17,14 @@ const UserProtectWrapper = ({ children }) => {
     }, [token])
 
     useEffect(() => {
-        const SERVER_URL = import.meta.env.VITE_ENV === 'development' ? import.meta.env.VITE_SERVER_URL_DEV : import.meta.env.VITE_SERVER_URL
+        const SERVER_URL = import.meta.env.VITE_ENV === 'developement' ? import.meta.env.VITE_SERVER_URL_DEV : import.meta.env.VITE_SERVER_URL
         axios.get(`${SERVER_URL}/users/profile`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         }).then(response => {
             if (response.status == 200) {
-                setUser(response.data.user)
+                setUser(response.data.captain)
                 setIsLoading(false)
             }
         }).catch(error => {

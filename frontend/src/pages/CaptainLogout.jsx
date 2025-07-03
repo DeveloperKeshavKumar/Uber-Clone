@@ -1,15 +1,15 @@
 import axios from 'axios'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router'
-import { CaptainDataContext } from '../context/CaptainContext'
+import { UserDataContext } from '../context/UserContext'
 
 const CaptainLogout = () => {
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
-    const { setCaptain } = useContext(CaptainDataContext)
+    const { user, setUser } = useContext(UserDataContext)
 
     async function logout() {
-        const SERVER_URL = import.meta.env.VITE_ENV === 'development' ? import.meta.env.VITE_SERVER_URL_DEV : import.meta.env.VITE_SERVER_URL
+        const SERVER_URL = import.meta.env.VITE_ENV === 'developement' ? import.meta.env.VITE_SERVER_URL_DEV : import.meta.env.VITE_SERVER_URL
         const response = await axios.get(`${SERVER_URL}/captain/logout`, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -18,7 +18,7 @@ const CaptainLogout = () => {
 
         if (response.status === 200) {
             localStorage.removeItem('token')
-            setCaptain({})
+            setUser({})
             navigate('/captain/login')
         }
     }
