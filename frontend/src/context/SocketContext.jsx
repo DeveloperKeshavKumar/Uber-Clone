@@ -3,8 +3,8 @@ import React, { createContext, useEffect } from 'react'
 import { io } from 'socket.io-client'
 
 export const SocketContext = createContext()
-const SERVER_URL = import.meta.env.VITE_ENV === 'developement' ? import.meta.env.VITE_SOCKET_URL_DEV : import.meta.env.VITE_SOCKET_URL
-const socket = io(`${SERVER_URL}`)
+const SOCKET_URL = import.meta.env.VITE_ENV === 'development' ? import.meta.env.VITE_SOCKET_URL_DEV : import.meta.env.VITE_SOCKET_URL
+const socket = io(`${SOCKET_URL}`)
 
 const SocketProvider = ({ children }) => {
     useEffect(() => {
